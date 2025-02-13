@@ -12,10 +12,10 @@ public class Project_D {
         
         AccountData accountData = new AccountData();
         List<AccountData.Account> accounts = accountData.getAccounts();
-        
-        //display dashboard
-        Dashboard yes = new Dashboard();
-        yes.setVisible(true);
+
+        // Display dashboard
+        Dashboard dashboard = new Dashboard(accountData);
+        dashboard.setVisible(true);
         
     }
 }

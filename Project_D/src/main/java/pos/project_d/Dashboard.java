@@ -8,43 +8,45 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.Point;
 import javax.swing.JPanel;
+import pos.project_d.Data.AccountData;
 import pos.project_d.panel.LoginPanel;
 /**
  *
  * @author Nathan
  */
 public class Dashboard extends javax.swing.JFrame {
-
-    private int login = 0;
     
-    public Dashboard() {
+    private JPanel centerPanel;
+    
+    public Dashboard(AccountData accountData) {
         initComponents();
         MainPanel.setVisible(false);
         Menu.setVisible(false);
         setLocationRelativeTo(null);
         
-        LoginPanel loginPanel = new LoginPanel();
+        LoginPanel loginPanel = new LoginPanel(accountData, this);
         loginPanel.setPreferredSize(new Dimension(500, 243));
-        
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new GridBagLayout()); // Use GridBagLayout for centering
-        centerPanel.add(loginPanel); // Add the LoginPanel to the centerPanel
+
+        centerPanel = new JPanel();
+        centerPanel.setLayout(new GridBagLayout());
+        centerPanel.add(loginPanel);
 
         // Set the layout manager for the frame
         setLayout(new BorderLayout());
         add(centerPanel, BorderLayout.CENTER);
         centerPanel.setVisible(true);
-        
-        if(login == 1){
-            centerPanel.setVisible(false);
-            Menu.setVisible(true);
-            MainPanel.setVisible(true);
-        }
-        
-        
-     
     }
 
+    public void showMainContent() {
+        
+        centerPanel.setVisible(false);
+        MainPanel.setVisible(true);
+        Menu.setVisible(true);
+        // Add your main content here
+        // e.g., add(MainPanel);
+        revalidate(); // Refresh the layout
+        repaint(); // Repaint the frame
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,37 +127,6 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;

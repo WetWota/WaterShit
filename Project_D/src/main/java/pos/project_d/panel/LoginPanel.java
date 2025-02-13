@@ -1,14 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package pos.project_d.panel;
+
+import pos.project_d.Data.AccountData;
+import javax.swing.JOptionPane;
+import pos.project_d.Dashboard;
 
 public class LoginPanel extends javax.swing.JPanel {
 
-    private int login;
+    private AccountData accountData; // Reference to account data
+    private Dashboard dashboard; // Reference to the Dashboard
     
-    public LoginPanel() {
+
+    public LoginPanel(AccountData accountData, Dashboard dashboard) {
+        this.accountData = accountData; // Pass the account data to the panel
+        this.dashboard = dashboard; // Pass the Dashboard reference
         initComponents();
     }
 
@@ -93,7 +97,26 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void LoginBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtn
-           login = 1;
+           String username = jTextField1.getText();
+        String password = jTextField2.getText(); // Use getPassword() for JPasswordField
+
+        // Validate login
+        if (validateLogin(username, password)) {
+            JOptionPane.showMessageDialog(this, "Login successful!");
+            dashboard.showMainContent(); // Call the method to show main content
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid username or password.");
+        }
+    }
+
+    private boolean validateLogin(String username, String password) {
+        // Check against the loaded accounts
+        for (AccountData.Account account : accountData.getAccounts()) {
+            if (account.getFirstName().equals(username) && account.getPassword().equals(password)) {
+                return true; // Login successful
+            }
+        }
+        return false; // Login failed
     }//GEN-LAST:event_LoginBtn
 
 

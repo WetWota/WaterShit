@@ -15,7 +15,6 @@ public class Menu extends javax.swing.JPanel {
      */
     public Menu() {
         initComponents();
-        setBackground(java.awt.Color.GREEN);
     }
 
     /**
