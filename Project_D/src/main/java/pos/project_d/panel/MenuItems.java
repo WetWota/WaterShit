@@ -4,6 +4,8 @@
  */
 package pos.project_d.panel;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Nathan
@@ -15,6 +17,7 @@ public class MenuItems extends javax.swing.JPanel {
      */
     public MenuItems() {
         initComponents();
+        setupMenuButtons();
     }
 
     /**
@@ -26,45 +29,48 @@ public class MenuItems extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-
-        jLabel1.setText("Tite");
-
-        jLabel2.setText("Tite 2");
-
-        jLabel3.setText("Tite 3");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 78, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 237, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+     private void setupMenuButtons() {
+        // Create buttons
+        JButton homeButton = new JButton("Home");
+        JButton deliveryButton = new JButton("Delivery");
+        JButton salesButton = new JButton("Sales");
+        JButton adminButton = new JButton("Admin");
 
+        // Set layout
+        javax.swing.GroupLayout layout = (javax.swing.GroupLayout) this.getLayout();
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+
+        // Horizontal group
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(homeButton)
+            .addComponent(deliveryButton)
+            .addComponent(salesButton)
+            .addComponent(adminButton)
+        );
+
+        // Vertical group
+        layout.setVerticalGroup(
+            layout.createSequentialGroup()
+            .addComponent(homeButton)
+            .addComponent(deliveryButton)
+            .addComponent(salesButton)
+            .addComponent(adminButton)
+        );
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

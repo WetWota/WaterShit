@@ -3,18 +3,45 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package pos.project_d;
-import pos.project_d.panel.Menu;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.Point;
+import javax.swing.JPanel;
+import pos.project_d.panel.LoginPanel;
 /**
  *
  * @author Nathan
  */
 public class Dashboard extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Dashboard
-     */
+    private int login = 0;
+    
     public Dashboard() {
         initComponents();
+        MainPanel.setVisible(false);
+        Menu.setVisible(false);
+        setLocationRelativeTo(null);
+        
+        LoginPanel loginPanel = new LoginPanel();
+        loginPanel.setPreferredSize(new Dimension(500, 243));
+        
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridBagLayout()); // Use GridBagLayout for centering
+        centerPanel.add(loginPanel); // Add the LoginPanel to the centerPanel
+
+        // Set the layout manager for the frame
+        setLayout(new BorderLayout());
+        add(centerPanel, BorderLayout.CENTER);
+        centerPanel.setVisible(true);
+        
+        if(login == 1){
+            centerPanel.setVisible(false);
+            Menu.setVisible(true);
+            MainPanel.setVisible(true);
+        }
+        
+        
      
     }
 
@@ -27,33 +54,73 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loginPanel2 = new pos.project_d.panel.LoginPanel();
-        menu1 = new pos.project_d.panel.Menu();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        Menu = new pos.project_d.panel.Menu();
+        MainPanel = new javax.swing.JPanel();
+        tItleBar = new pos.project_d.panel.TItleBar();
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1024, 576));
+        setResizable(false);
+
+        javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
+        MainPanel.setLayout(MainPanelLayout);
+        MainPanelLayout.setHorizontalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 826, Short.MAX_VALUE)
+        );
+        MainPanelLayout.setVerticalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 549, Short.MAX_VALUE)
+        );
+
+        tItleBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                tItleBarMouseDragged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(menu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
-                .addComponent(loginPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(142, 142, 142))
+                .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tItleBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+            .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(loginPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tItleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tItleBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tItleBarMouseDragged
+        Point p = evt.getLocationOnScreen();
+        this.setLocation(p);
+    }//GEN-LAST:event_tItleBarMouseDragged
 
     /**
      * @param args the command line arguments
@@ -91,7 +158,9 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private pos.project_d.panel.LoginPanel loginPanel2;
-    private pos.project_d.panel.Menu menu1;
+    private javax.swing.JPanel MainPanel;
+    private pos.project_d.panel.Menu Menu;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private pos.project_d.panel.TItleBar tItleBar;
     // End of variables declaration//GEN-END:variables
 }
