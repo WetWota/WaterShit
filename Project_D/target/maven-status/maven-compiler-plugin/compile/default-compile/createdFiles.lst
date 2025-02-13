@@ -11,5 +11,7 @@ pos\project_d\panel\LoginPanel$1.class
 pos\project_d\Data\AccountData$Account.class
 pos\project_d\panel\MenuItems.class
 pos\project_d\panel\LoginPanel$2.class
+pos\project_d\panel\Menu$1.class
 pos\project_d\panel\TItleBar$1.class
 pos\project_d\test\AccountDataTest.class
+pos\project_d\utils\SessionManager.class

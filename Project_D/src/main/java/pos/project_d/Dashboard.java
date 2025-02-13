@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package pos.project_d;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
@@ -10,16 +7,21 @@ import java.awt.Point;
 import javax.swing.JPanel;
 import pos.project_d.Data.AccountData;
 import pos.project_d.panel.LoginPanel;
+
 /**
- *
- * @author Nathan
+ * Dashboard JFrame - Main UI after login
  */
 public class Dashboard extends javax.swing.JFrame {
     
     private JPanel centerPanel;
-    
+    private AccountData accountData;
+
     public Dashboard(AccountData accountData) {
-        initComponents();
+        this.accountData = accountData;
+        initComponents(); // ✅ Initialize NetBeans auto-generated UI
+
+        this.Menu.setDependencies(this, accountData); // ✅ Pass dependencies to Menu
+
         MainPanel.setVisible(false);
         Menu.setVisible(false);
         setLocationRelativeTo(null);
@@ -31,21 +33,23 @@ public class Dashboard extends javax.swing.JFrame {
         centerPanel.setLayout(new GridBagLayout());
         centerPanel.add(loginPanel);
 
-        // Set the layout manager for the frame
         setLayout(new BorderLayout());
         add(centerPanel, BorderLayout.CENTER);
         centerPanel.setVisible(true);
     }
 
     public void showMainContent() {
-        
         centerPanel.setVisible(false);
         MainPanel.setVisible(true);
         Menu.setVisible(true);
-        // Add your main content here
-        // e.g., add(MainPanel);
-        revalidate(); // Refresh the layout
-        repaint(); // Repaint the frame
+        revalidate(); 
+        repaint(); 
+    }
+    
+    public void showLoginScreen() {
+        MainPanel.setVisible(false);
+        Menu.setVisible(false);
+        centerPanel.setVisible(true);
     }
     /**
      * This method is called from within the constructor to initialize the form.

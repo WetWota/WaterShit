@@ -3,6 +3,7 @@ package pos.project_d.panel;
 import pos.project_d.Data.AccountData;
 import javax.swing.JOptionPane;
 import pos.project_d.Dashboard;
+import pos.project_d.utils.SessionManager;
 
 public class LoginPanel extends javax.swing.JPanel {
 
@@ -97,26 +98,19 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void LoginBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtn
-           String username = jTextField1.getText();
-        String password = jTextField2.getText(); // Use getPassword() for JPasswordField
+        String username = jTextField1.getText();
+    String password = jTextField2.getText();
 
-        // Validate login
-        if (validateLogin(username, password)) {
+    for (AccountData.Account account : accountData.getAccounts()) {
+        if (account.getFirstName().equals(username) && account.getPassword().equals(password)) {
+            SessionManager.setLoggedInUser(account); // ✅ Store user in session
             JOptionPane.showMessageDialog(this, "Login successful!");
-            dashboard.showMainContent(); // Call the method to show main content
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid username or password.");
+            dashboard.showMainContent(); 
+            return;
         }
     }
 
-    private boolean validateLogin(String username, String password) {
-        // Check against the loaded accounts
-        for (AccountData.Account account : accountData.getAccounts()) {
-            if (account.getFirstName().equals(username) && account.getPassword().equals(password)) {
-                return true; // Login successful
-            }
-        }
-        return false; // Login failed
+    JOptionPane.showMessageDialog(this, "Invalid username or password.");
     }//GEN-LAST:event_LoginBtn
 
 

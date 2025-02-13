@@ -1,29 +1,33 @@
 package pos.project_d.test;
 
-import pos.project_d.Data.AccountData;
 
-import java.util.List;
+import java.util.Scanner;
+import pos.project_d.Data.AccountData;
+import pos.project_d.utils.SessionManager;
 
 public class AccountDataTest {
     public static void main(String[] args) {
-        AccountData accountData = new AccountData();
-        List<AccountData.Account> accounts = accountData.getAccounts();
+        Scanner scanner = new Scanner(System.in);
 
-        if (accounts.isEmpty()) {
-            System.out.println("No accounts found.");
-        } else {
-            for (AccountData.Account account : accounts) {
-                System.out.println("Account ID: " + account.getAccountId());
-                System.out.println("First Name: " + account.getFirstName());
-                System.out.println("Last Name: " + account.getLastName());
-                System.out.println("Password: " + account.getPassword());
-                System.out.println("Contact Number: " + account.getContactNum());
-                System.out.println("Address: " + account.getAddress());
-                System.out.println("Date Created: " + account.getDateCreated());
-                System.out.println("Created By: " + account.getCreatedBy());
-                System.out.println("Role: " + account.getRole());
-                System.out.println("---------------------------");
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        AccountData accountData = new AccountData();
+        for (AccountData.Account account : accountData.getAccounts()) {
+            if (account.getFirstName().equals(username) && account.getPassword().equals(password)) {
+                SessionManager.setLoggedInUser(account); // ✅ Store user
+                System.out.println("\n✅ Login successful for user: " + username);
+                break;
             }
         }
+
+        if (SessionManager.getLoggedInUser() == null) {
+            System.out.println("\n❌ Invalid username or password.");
+        }
+
+        scanner.close();
     }
 }
